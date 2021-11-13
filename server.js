@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const user = require("./routes/user");
+app.use(express.json());
 
 const port = 5000;
 
@@ -21,10 +22,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
-
 app.use("/uploads", express.static("uploads"));
 
+// https://digitalocean.cdn.prismic.io/digitalocean/8d8bc1f0-2a4b-473b-9793-2a240ea8ccb4_digitalocean-logo-mark-copy.svg
+// http:localhost:5000/uploads/1636284820608-49550872-favicon-32x32.png
 app.use("/user", user);
 
 app.get("/", (req, res) => {
